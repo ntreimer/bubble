@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -9,7 +9,10 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>
+          Bubble is an app designed to generate activities for the user, to help
+          alleviate the boredom and help them to plan their days.
+        </p>
       </div>
     </div>
   );

@@ -8,11 +8,22 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
+// also need axios to get make our API request
+const axios = require('axios');
+
+// connect to the .env
+require('dotenv').config();
+
 /**
  * GET route template
  */
 router.get('/', (req, res) => {
-  // GET route code here
+    console.log('in boredAPI get router');
+    axios.get(`https://www.boredapi.com/api/activity`).then((res) => {
+        console.log(res);
+    }).catch((err) => {
+        console.log(err);
+    })
 });
 
 /**

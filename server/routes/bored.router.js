@@ -19,10 +19,12 @@ require('dotenv').config();
  */
 router.get('/', (req, res) => {
     console.log('in boredAPI get router');
-    axios.get(`https://www.boredapi.com/api/activity`).then((res) => {
-        console.log(res);
+    axios.get(`https://www.boredapi.com/api/activity`).then((response) => {
+        console.log(response.data);
+        res.send(response.data);
     }).catch((err) => {
         console.log(err);
+        res.sendStatus(500);
     })
 });
 

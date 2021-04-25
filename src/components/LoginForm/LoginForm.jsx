@@ -33,7 +33,7 @@ function LoginForm() {
         </h3>
       )}
       <div>
-        <Typography htmlFor="username">
+
           <TextField
             variant="outlined"
             type="text"
@@ -42,13 +42,10 @@ function LoginForm() {
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </Typography>
       </div>
       <br/>
       <div>
-        <Typography htmlFor="password">
-          
-          <TextField
+        <TextField
             variant="outlined"
             type="password"
             label="Password"
@@ -56,7 +53,6 @@ function LoginForm() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </Typography>
       </div>
       <br/>
       <div>

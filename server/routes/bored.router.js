@@ -11,11 +11,9 @@ const router = express.Router();
 // also need axios to get make our API request
 const axios = require('axios');
 
-// connect to the .env
-require('dotenv').config();
 
 /**
- * GET route template
+ * GET route
  */
 router.get('/', (req, res) => {
     console.log('in boredAPI get router');
@@ -28,11 +26,5 @@ router.get('/', (req, res) => {
     })
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
-});
 
 module.exports = router;

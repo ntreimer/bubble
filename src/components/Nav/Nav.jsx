@@ -37,7 +37,7 @@ function Nav() {
         )}
 
         <Link className="navLink" to="/about">
-          About
+          Activity
         </Link>
       </div>
     </div>

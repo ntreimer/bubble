@@ -20,28 +20,24 @@ import Container from "@material-ui/core/Container";
 
 // CUSTOM COMPONENTS
 import RegisterForm from "../RegisterForm/RegisterForm";
+import LoginForm from "../LoginForm/LoginForm";
 
 function LandingPage() {
-  const [heading, setHeading] = useState("Bubble");
   const history = useHistory();
 
-  const onLogin = (event) => {
-    history.push("/login");
+  const signUp = (event) => {
+    history.push("/register");
   };
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
-      <Typography>matbub</Typography>
-      <RegisterForm />
-      <Button color="primary" variant="contained">
-        mat but
-      </Button>
+      <Typography variant="h2">Log In</Typography>
+      <LoginForm />
       <center>
-        <h4>Already a Member?</h4>
-        <button className="btn btn_sizeSm" onClick={onLogin}>
-          Login
-        </button>
+        <h4>Not a member?</h4>
+        <Button color="primary" variant="contained" onClick={signUp}>
+          Sign Up
+        </Button>
       </center>
     </div>
   );

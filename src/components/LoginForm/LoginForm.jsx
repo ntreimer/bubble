@@ -1,3 +1,4 @@
+import { TextField, Typography, Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
@@ -26,38 +27,40 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
+        <Typography htmlFor="username">
+          <TextField
+            variant="outlined"
             type="text"
-            name="username"
+            label="Username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        </Typography>
       </div>
+      <br/>
       <div>
-        <label htmlFor="password">
-          Password:
-          <input
+        <Typography htmlFor="password">
+          
+          <TextField
+            variant="outlined"
             type="password"
-            name="password"
+            label="Password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </Typography>
       </div>
+      <br/>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button variant="contained" color="primary" onClick={login}>Login</Button>
       </div>
     </form>
   );

@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //
 import clsx from "clsx";
@@ -18,12 +18,16 @@ import HomeIcon from "@material-ui/icons/Home";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import CreateIcon from "@material-ui/icons/Create";
-import { Typography } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { AppBar, Typography, Toolbar, IconButton } from "@material-ui/core";
 
 //
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   let loginLinkData = {
     path: "/login",
@@ -46,7 +50,7 @@ function Nav() {
 
   const classes = useStyles();
   const [state, setState] = React.useState({
-    left: false
+    left: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -59,7 +63,28 @@ function Nav() {
 
     setState({ ...state, [anchor]: open });
   };
-
+  const menuItems = [
+    {
+      title: "Home",
+      icon: <HomeIcon color="primary"/>,
+      path: "/home",
+    },
+    {
+      title: "Bookmarks",
+      icon: <BookmarkIcon color="primary"/>,
+      path: "/bookmarks",
+    },
+    {
+      title: "Calendar",
+      icon: <CalendarTodayIcon color="primary"/>,
+      path: "/calendar",
+    },
+    {
+      title: "Create Activity",
+      icon: <CreateIcon color="primary"/>,
+      path: "/create",
+    },
+  ];
   const list = (anchor) => (
     <div
       role="presentation"
@@ -67,12 +92,16 @@ function Nav() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home", "Bookmarked", "Calendar", "Create Activity"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary={text} />
+        {menuItems.map((text, index) => (
+          <ListItem
+            button
+            key={text.title}
+            onClick={() => {
+              history.push(text.path);
+            }}
+          >
+            <ListItemIcon>{text.icon}</ListItemIcon>
+            <ListItemText primary={text.title} />
           </ListItem>
         ))}
       </List>
@@ -80,25 +109,46 @@ function Nav() {
   );
   if (user.id != null) {
     return (
-
       <div>
-          <React.Fragment key={"left"}>
-            <Button onClick={toggleDrawer("left", true)}>Menu</Button>
-            <Drawer
-              anchor={"left"}
-              open={state["left"]}
-              onClose={toggleDrawer("left", false)}
-            >
-              {list("left")}
-            </Drawer>
-          </React.Fragment>
+        <React.Fragment key={"left"}>
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <Button onClick={toggleDrawer("left", true)}>
+                <MenuIcon color="secondary"/>
+              </Button>
+              <Drawer
+                anchor={"left"}
+                open={state["left"]}
+                onClose={toggleDrawer("left", false)}
+              >
+                {list("left")}
+              </Drawer>
+              <Typography color="secondary" align="center" variant="h2">
+                Bubble
+              </Typography>
+              <IconButton 
+                onClick={() => dispatch({ type: 'LOGOUT' })}
+                edge="end"
+                color="secondary">
+                <ExitToAppIcon />
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+        </React.Fragment>
       </div>
     );
-  }
-  else {
-    return (<>
-      <Typography>Bubble</Typography>
-    </>)
+  } else {
+    return (
+      <>
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <Typography color="secondary" align="center" variant="h2">
+              Bubble
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </>
+    );
   }
 }
 

@@ -2,15 +2,41 @@ import axios from "axios";
 import { React, useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
+//
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 function ActivityPage() {
-  const [activity, setActivity] = useState("");
-  const [object, setObject] = useState({});
+  const [activity, setActivity] = useState('');
+  const [type, setType] = useState('');
+  const [participants, setParticipants] = useState('');
+  const [price, setPrice] = useState('');
+  const objectToSend = {
+    activity: activity,
+    type: type,
+    participants: participants,
+    price: price
+  }
 
   useEffect(() => {
     getActivity();
@@ -21,17 +47,28 @@ function ActivityPage() {
       .get("/api/bored")
       .then((res) => {
         console.log(res.data);
-        setActivity(res.data.activity);
-        setObject(res.data);
+        convertActivity(res.data)
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const convertActivity = (input) => {
+    setActivity(input.activity);
+    setType(input.type);
+    setParticipants(input.participants);
+    if (input.price === 0) {
+      setPrice('yes')
+    }
+    else {
+      setPrice('no')
+    }
+  }
+
   const saveActivity = () => {
     axios
-      .post("/api/activity", object)
+      .post("/api/activity", objectToSend)
       .then((res) => {
         console.log(res);
         alert("POSTed activity");
@@ -41,12 +78,30 @@ function ActivityPage() {
       });
   };
 
+  const classes = useStyles();
+  const bull = <span className={classes.bullet}>•</span>;
+
   return (
     <div className="container">
       <div>
-        <Typography variant="h4">Activity here:</Typography>
         <br />
-        <Typography variant="h5">{activity}</Typography>
+        <Card className={classes.root}>
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              {activity}
+            </Typography>
+            <br/>
+            <Typography variant="body2" component="p">
+              Type: {type}
+            </Typography>
+            <Typography variant="body2" component="p">
+              Participants: {participants}
+            </Typography>
+            <Typography variant="body2" component="p">
+              Free: {price}
+            </Typography>
+          </CardContent>
+        </Card>
         <br />
         <Button color="primary" variant="contained" onClick={getActivity}>
           Get Activity

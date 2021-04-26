@@ -22,19 +22,19 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log('in activity POST with:', req.body);
-    // const query = `
-    // INSERT INTO "activity" (
-    //     "user_id" INTEGER,
-    //     "description" VARCHAR (2000) NOT NULL,
-    //     "type" varchar (30),
-    //     "participants" VARCHAR (6),
-    //     "free" BOOLEAN,
-    //     "link" VARCHAR (2048),
-    //     "notes" VARCHAR (2000)
-    // )
-    // VALUES ($1, $2, $3, $4, $5, $6, $7);
-    // `;
-    // pool.
+    const queryString = `
+    INSERT INTO "activity" (
+        "user_id" INTEGER,
+        "description" VARCHAR (2000) NOT NULL,
+        "type" varchar (30),
+        "participants" VARCHAR (6),
+        "free" BOOLEAN,
+        "link" VARCHAR (2048),
+        "notes" VARCHAR (2000)
+    )
+    VALUES ($1, $2, $3, $4, $5, $6, $7);
+    `;
+    pool.query
     res.send('merp');
   // POST route code here
 });

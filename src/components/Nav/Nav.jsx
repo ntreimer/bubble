@@ -66,22 +66,22 @@ function Nav() {
   const menuItems = [
     {
       title: "Home",
-      icon: <HomeIcon color="primary"/>,
+      icon: <HomeIcon color="primary" />,
       path: "/home",
     },
     {
       title: "Bookmarks",
-      icon: <BookmarkIcon color="primary"/>,
+      icon: <BookmarkIcon color="primary" />,
       path: "/bookmarks",
     },
     {
       title: "Calendar",
-      icon: <CalendarTodayIcon color="primary"/>,
+      icon: <CalendarTodayIcon color="primary" />,
       path: "/calendar",
     },
     {
       title: "Create Activity",
-      icon: <CreateIcon color="primary"/>,
+      icon: <CreateIcon color="primary" />,
       path: "/create",
     },
   ];
@@ -114,7 +114,7 @@ function Nav() {
           <AppBar position="static">
             <Toolbar variant="dense">
               <Button onClick={toggleDrawer("left", true)}>
-                <MenuIcon color="secondary"/>
+                <MenuIcon color="secondary" />
               </Button>
               <Drawer
                 anchor={"left"}
@@ -126,10 +126,11 @@ function Nav() {
               <Typography color="secondary" align="center" variant="h2">
                 Bubble
               </Typography>
-              <IconButton 
-                onClick={() => dispatch({ type: 'LOGOUT' })}
+              <IconButton
+                onClick={() => dispatch({ type: "LOGOUT" })}
                 edge="end"
-                color="secondary">
+                color="secondary"
+              >
                 <ExitToAppIcon />
               </IconButton>
             </Toolbar>

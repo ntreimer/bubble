@@ -18,6 +18,10 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import BookmarksPage from '../BookmarksPage/BookmarksPage';
+import CalendarPage from '../CalendarPage/CalendarPage';
+import CreateActivityPage from '../CreateActivityPage/CreateActivityPage';
+
 
 import './App.css';
 
@@ -58,11 +62,25 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+
             exact
-            path="/info"
+            path="/bookmarks"
           >
-            <InfoPage />
+            <BookmarksPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/calendar"
+          >
+            <CalendarPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/create"
+          >
+            <CreateActivityPage />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

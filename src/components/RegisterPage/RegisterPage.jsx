@@ -1,3 +1,4 @@
+import { Typography, Button } from '@material-ui/core';
 import React from 'react';
 
 import { useHistory } from 'react-router-dom';
@@ -11,15 +12,14 @@ function RegisterPage() {
       <RegisterForm />
 
       <center>
-        <button
-          type="button"
-          className="btn btn_asLink"
+        <Button
+          variant="outlined"
           onClick={() => {
             history.push('/login');
           }}
         >
-          Login
-        </button>
+          Already a member? Log in
+        </Button>
       </center>
     </div>
   );

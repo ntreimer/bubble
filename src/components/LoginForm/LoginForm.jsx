@@ -1,12 +1,12 @@
-import { TextField, Typography, Button } from '@material-ui/core';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import { TextField, Typography, Button } from "@material-ui/core";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function LoginForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const errors = useSelector(store => store.errors);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
   const login = (event) => {
@@ -14,14 +14,14 @@ function LoginForm() {
 
     if (username && password) {
       dispatch({
-        type: 'LOGIN',
+        type: "LOGIN",
         payload: {
           username: username,
           password: password,
         },
       });
     } else {
-      dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
   }; // end login
 
@@ -33,30 +33,31 @@ function LoginForm() {
         </h3>
       )}
       <div>
-
-          <TextField
-            variant="outlined"
-            type="text"
-            label="Username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
+        <TextField
+          variant="outlined"
+          type="text"
+          label="Username"
+          required
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
       </div>
-      <br/>
+      <br />
       <div>
         <TextField
-            variant="outlined"
-            type="password"
-            label="Password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          variant="outlined"
+          type="password"
+          label="Password"
+          required
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
       </div>
-      <br/>
+      <br />
       <div>
-        <Button variant="contained" color="primary" onClick={login}>Login</Button>
+        <Button variant="contained" color="primary" onClick={login}>
+          Login
+        </Button>
       </div>
     </form>
   );

@@ -67,7 +67,7 @@ function Nav() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["Home", "Bookmarked", "Calendar", "Create Activity"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               <HomeIcon />

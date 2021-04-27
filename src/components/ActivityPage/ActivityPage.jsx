@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import { useDispatch, useSelector } from "react-redux";
 
 //
 
@@ -27,32 +28,30 @@ const useStyles = makeStyles({
 });
 
 function ActivityPage() {
-  const [activity, setActivity] = useState('');
-  const [type, setType] = useState('');
-  const [participants, setParticipants] = useState('');
-  const [price, setPrice] = useState('');
-  const objectToSend = {
-    activity: activity,
-    type: type,
-    participants: participants,
-    price: price
-  }
+  const dispatch = useDispatch();
+
+
+  // const [activity, setActivity] = useState('');
+  // const [type, setType] = useState('');
+  // const [participants, setParticipants] = useState('');
+  // const [price, setPrice] = useState('');
+  // const [link, setLink] = useS
+  // const objectToSend = {
+  //   activity: activity,
+  //   type: type,
+  //   participants: participants,
+  //   price: price
+  // }
 
   useEffect(() => {
     getActivity();
   }, []);
 
   const getActivity = () => {
-    axios
-      .get("/api/bored")
-      .then((res) => {
-        console.log(res.data);
-        convertActivity(res.data)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch({type: 'FETCH_ACTIVITY'})
   };
+
+  const activity = useSelector(store => store.activity);
 
   const convertActivity = (input) => {
     setActivity(input.activity);
@@ -66,20 +65,12 @@ function ActivityPage() {
     }
   }
 
+
   const saveActivity = () => {
-    axios
-      .post("/api/activity", objectToSend)
-      .then((res) => {
-        console.log(res);
-        alert("POSTed activity");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch({type: 'SAVE_ACTIVITY', payload: objectToSend})
   };
 
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div className="container">
@@ -88,18 +79,19 @@ function ActivityPage() {
         <Card className={classes.root}>
           <CardContent>
             <Typography variant="h5" component="h2">
-              {activity}
+              {activity.activity}
             </Typography>
             <br/>
             <Typography variant="body2" component="p">
-              Type: {type}
+              Type: {activity.type}
             </Typography>
             <Typography variant="body2" component="p">
-              Participants: {participants}
+              Participants: {activity.participants}
             </Typography>
             <Typography variant="body2" component="p">
-              Free: {price}
+              Free: {activity.price}
             </Typography>
+            {activity.link}
           </CardContent>
         </Card>
         <br />

@@ -9,6 +9,13 @@ import CardContent from "@material-ui/core/CardContent";
 import { useDispatch, useSelector } from "react-redux";
 
 //
+import RefreshIcon from '@material-ui/icons/Refresh';
+import StarsIcon from '@material-ui/icons/Stars';
+import { useHistory } from "react-router";
+import { HashRouter, Link } from "react-router-dom";
+ 
+//
+
 
 const useStyles = makeStyles({
   root: {
@@ -29,19 +36,7 @@ const useStyles = makeStyles({
 
 function ActivityPage() {
   const dispatch = useDispatch();
-
-
-  // const [activity, setActivity] = useState('');
-  // const [type, setType] = useState('');
-  // const [participants, setParticipants] = useState('');
-  // const [price, setPrice] = useState('');
-  // const [link, setLink] = useS
-  // const objectToSend = {
-  //   activity: activity,
-  //   type: type,
-  //   participants: participants,
-  //   price: price
-  // }
+  const history = useHistory();
 
   useEffect(() => {
     getActivity();
@@ -53,15 +48,12 @@ function ActivityPage() {
 
   const activity = useSelector(store => store.activity);
 
-  const convertActivity = (input) => {
-    setActivity(input.activity);
-    setType(input.type);
-    setParticipants(input.participants);
-    if (input.price === 0) {
-      setPrice('yes')
+  const convertPrice = () => {
+    if (activity.price === 0) {
+      return 'yes';
     }
     else {
-      setPrice('no')
+      return 'no';
     }
   }
 
@@ -89,17 +81,19 @@ function ActivityPage() {
               Participants: {activity.participants}
             </Typography>
             <Typography variant="body2" component="p">
-              Free: {activity.price}
+              Free: {convertPrice()}
             </Typography>
-            {activity.link}
           </CardContent>
+          <CardActions>
+          <a target="_blank" href={activity.link}>{activity.link}</a>
+          </CardActions>
         </Card>
         <br />
-        <Button color="primary" variant="contained" onClick={getActivity}>
-          Get Activity
+        <Button color="secondary" variant="contained" startIcon={<RefreshIcon />} onClick={getActivity}>
+          New Activity
         </Button>
-        <Button color="primary" variant="contained" onClick={saveActivity}>
-          Save Activity
+        <Button color="primary" variant="contained" startIcon={<StarsIcon />} onClick={saveActivity}>
+          Add Activity
         </Button>
       </div>
     </div>

@@ -52,6 +52,15 @@ function AddActivityPage() {
   const [date, setDate] = useState('')
   const activity = useSelector((store) => store.activity);
 
+  const bookmarkObject = {
+      activity: activity
+  }
+
+  const calendarObject = {
+      activity: activity,
+      date: date
+  }
+
   const convertPrice = () => {
     if (activity.price === 0) {
       return "yes";
@@ -59,15 +68,18 @@ function AddActivityPage() {
       return "no";
     }
   };
+
   const updateDate = (event) => {
       setDate(event.target.value)
   }
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+
+  const bookmarkActivity = () => {
+    dispatch({ type: "BOOKMARK_ACTIVITY", payload: bookmarkObject });
+    history.push('/bookmarks')
   };
 
-  const saveActivity = () => {
-    dispatch({ type: "SAVE_ACTIVITY", payload: objectToSend });
+  const calendarActivity = () => {
+    dispatch({ type: "CALENDAR_ACTIVITY", payload: calendarObject });
   };
 
   const classes = useStyles();
@@ -102,7 +114,6 @@ function AddActivityPage() {
         <form className={classes.container} noValidate>
           <TextField
             id="date"
-            label="Birthday"
             type="date"
             className={classes.textField}
             onChange={updateDate}
@@ -117,16 +128,17 @@ function AddActivityPage() {
           color="secondary"
           variant="contained"
           startIcon={<RefreshIcon />}
+          onClick={bookmarkActivity}
         >
-          New Activity
+          Only Bookmark
         </Button>
         <Button
           color="primary"
           variant="contained"
           startIcon={<StarsIcon />}
-          onClick={saveActivity}
+          onClick={calendarActivity}
         >
-          Add Activity
+          Bookmark and Add to Calendar
         </Button>
       </div>
     </div>

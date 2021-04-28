@@ -21,7 +21,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import BookmarksPage from '../BookmarksPage/BookmarksPage';
 import CalendarPage from '../CalendarPage/CalendarPage';
 import CreateActivityPage from '../CreateActivityPage/CreateActivityPage';
-
+import AddActivityPage from '../AddActivityPage/AddActivityPage';
 
 import './App.css';
 
@@ -41,6 +41,13 @@ function App() {
           <Redirect exact from="/" to="/login" />
 
           {/* Visiting localhost:3000/home will show the home page. */}
+          <ProtectedRoute
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/add-activity"
+          >
+            <AddActivityPage />
+          </ProtectedRoute>
           <ProtectedRoute
             // shows AboutPage at all times (logged in or not)
             exact

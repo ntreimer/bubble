@@ -5,12 +5,12 @@ import { put, takeLatest, takeEvery } from "redux-saga/effects";
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchBookmarks() {
   try {
-    console.log("in fetchActivity:");
-    const activity = yield axios.get("/api/bored");
+    console.log("in fetchBookmarks:");
+    const bookmarks = yield axios.get("/api/bookmarks");
 
-    yield put({ type: "SET_ACTIVITY", payload: activity.data });
+    yield put({ type: "SET_BOOKMARKS", payload: activity.data });
   } catch (error) {
-    console.log("bored get request failed", error);
+    console.log("bookmarks get request failed", error);
   }
 }
 

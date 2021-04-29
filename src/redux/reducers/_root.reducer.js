@@ -2,6 +2,9 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import activity from './activity.reducer';
+import bookmarks from './bookmarks.reducer';
+import calendar from './calendar.reducer';
+
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -11,6 +14,8 @@ import activity from './activity.reducer';
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   activity, // preps activity to be POSTed to db
+  bookmarks,
+  calendar,
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
 });

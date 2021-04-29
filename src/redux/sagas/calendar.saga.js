@@ -5,12 +5,12 @@ import { put, takeLatest, takeEvery } from "redux-saga/effects";
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchCalendar() {
   try {
-    console.log("in fetchActivity:");
-    const activity = yield axios.get("/api/bored");
+    console.log("in fetchCalendar:");
+    const calendar = yield axios.get("/api/calendar");
 
-    yield put({ type: "SET_ACTIVITY", payload: activity.data });
+    yield put({ type: "SET_CALENDAR", payload: activity.data });
   } catch (error) {
-    console.log("bored get request failed", error);
+    console.log("calendar get request failed", error);
   }
 }
 

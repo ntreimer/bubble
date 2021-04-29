@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 function BookmarksPage(props) {
   const dispatch = useDispatch();
-  const store = useSelector((store) => store);
+  const bookmarks = useSelector((store) => store.bookmarks);
 
   useEffect(() => {
     getBookmarks();

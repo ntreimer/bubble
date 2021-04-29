@@ -2,6 +2,7 @@ import axios from "axios";
 import { React, useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -9,13 +10,14 @@ import CardContent from "@material-ui/core/CardContent";
 import { useDispatch, useSelector } from "react-redux";
 
 //
-import RefreshIcon from "@material-ui/icons/Refresh";
-import StarsIcon from "@material-ui/icons/Stars";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
 import TextField from "@material-ui/core/TextField";
 
 //
 import { useHistory } from "react-router";
 import { HashRouter, Link } from "react-router-dom";
+import { CalendarToday } from "@material-ui/icons";
 
 //
 
@@ -49,37 +51,38 @@ function AddActivityPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState('');
   const activity = useSelector((store) => store.activity);
 
   const bookmarkObject = {
-      activity: activity
-  }
+    activity: activity,
+  };
 
   const calendarObject = {
-      activity: activity,
-      date: date
-  }
+    activity: activity,
+    date: date,
+  };
 
   const convertPrice = () => {
     if (activity.price === 0) {
-      return "yes";
+      return 'yes';
     } else {
-      return "no";
+      return 'no';
     }
   };
 
   const updateDate = (event) => {
-      setDate(event.target.value)
-  }
+    setDate(event.target.value);
+  };
 
   const bookmarkActivity = () => {
-    dispatch({ type: "BOOKMARK_ACTIVITY", payload: bookmarkObject });
-    history.push('/bookmarks')
+    dispatch({ type: 'BOOKMARK_ACTIVITY', payload: bookmarkObject });
+    history.push('/bookmarks');
   };
 
   const calendarActivity = () => {
-    dispatch({ type: "CALENDAR_ACTIVITY", payload: calendarObject });
+    dispatch({ type: 'CALENDAR_ACTIVITY', payload: calendarObject });
+    history.push('/calendar');
   };
 
   const classes = useStyles();
@@ -122,24 +125,29 @@ function AddActivityPage() {
             }}
           />
         </form>
-        <Button onClick={() => {console.log(date);}}>get date</Button>
         <br />
-        <Button
-          color="secondary"
-          variant="contained"
-          startIcon={<RefreshIcon />}
-          onClick={bookmarkActivity}
-        >
-          Only Bookmark
-        </Button>
-        <Button
-          color="primary"
-          variant="contained"
-          startIcon={<StarsIcon />}
-          onClick={calendarActivity}
-        >
-          Bookmark and Add to Calendar
-        </Button>
+        <Grid container spacing={1}>
+          <Grid container item xs={12}>
+            <Button
+              color="secondary"
+              variant="contained"
+              startIcon={<BookmarkIcon />}
+              onClick={bookmarkActivity}
+            >
+              Only Bookmark
+            </Button>
+          </Grid>
+          <Grid container item xs={12}>
+            <Button
+              color="primary"
+              variant="contained"
+              startIcon={<CalendarTodayIcon />}
+              onClick={calendarActivity}
+            >
+              Bookmark and Add to Calendar
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     </div>
   );

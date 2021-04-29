@@ -54,7 +54,6 @@ router.post("/bookmark", (req, res) => {
 router.post("/calendar", (req, res) => {
   console.log("in activity/calendar POST with:", req.body, req.user);
   const activity = req.body.activity;
-  cobs
   if (activity.price === 0) {
     activity.price = true;
   } else {

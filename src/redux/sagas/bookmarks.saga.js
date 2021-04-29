@@ -7,8 +7,7 @@ function* fetchBookmarks() {
   try {
     console.log("in fetchBookmarks:");
     const bookmarks = yield axios.get("/api/bookmarks");
-
-    yield put({ type: "SET_BOOKMARKS", payload: activity.data });
+    yield put({ type: "SET_BOOKMARKS", payload: bookmarks });
   } catch (error) {
     console.log("bookmarks get request failed", error);
   }

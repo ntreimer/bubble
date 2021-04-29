@@ -11,7 +11,7 @@ function BookmarksPage(props) {
   }, []);
 
   const getBookmarks = () => {
-    dispatch({type: 'FETCH_BOOMARKS'})
+    dispatch({type: 'FETCH_BOOKMARKS'})
   }
 
   return (

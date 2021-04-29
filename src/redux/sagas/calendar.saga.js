@@ -8,7 +8,7 @@ function* fetchCalendar() {
     console.log("in fetchCalendar:");
     const calendar = yield axios.get("/api/calendar");
 
-    yield put({ type: "SET_CALENDAR", payload: activity.data });
+    yield put({ type: "SET_CALENDAR", payload: calendar.data });
   } catch (error) {
     console.log("calendar get request failed", error);
   }

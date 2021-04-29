@@ -8,12 +8,7 @@ const userStrategy = require("../strategies/user.strategy");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  console.log("in activity GET req.user:", req.user);
-  // GET route code here
-});
-
-router.post("/bookmark", (req, res) => {
+router.post("/bookmark", rejectUnauthenticated, (req, res) => {
   console.log("in activity/bookmark POST with:", req.body, req.user);
   const activity = req.body.activity;
   if (activity.price === 0) {
@@ -51,7 +46,7 @@ router.post("/bookmark", (req, res) => {
     });
 });
 
-router.post("/calendar", (req, res) => {
+router.post("/calendar", rejectUnauthenticated, (req, res) => {
   console.log("in activity/calendar POST with:", req.body, req.user);
   const activity = req.body.activity;
   if (activity.price === 0) {

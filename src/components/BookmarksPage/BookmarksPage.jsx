@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 
 
 function BookmarksPage(props) {
@@ -17,6 +17,7 @@ function BookmarksPage(props) {
   return (
     <div>
       <h2>Bookmarks</h2>
+      <h4>{JSON.stringify(bookmarks)}</h4>
     </div>
   );
 }

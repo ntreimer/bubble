@@ -15,7 +15,6 @@ function BookmarksPage(props) {
   }
   const showBookmarks = () => {
     if (bookmarks.map) {
-      console.log('we can map!');
       return (bookmarks.map((bookmark, index) => <BookmarksPageItem bookmark={bookmark} key={index}/>));
     }
     else {

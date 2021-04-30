@@ -82,7 +82,7 @@ router.post("/calendar", rejectUnauthenticated, (req, res) => {
           "activity_id",
           "date"
         )
-        VALUES ($1, $2)
+        VALUES ($1, $2);
       `;
       pool
         .query(calendaryQuery, [activityId, req.body.date])

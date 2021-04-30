@@ -13,10 +13,7 @@ import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import ActivityPage from '../ActivityPage/ActivityPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import BookmarksPage from '../BookmarksPage/BookmarksPage';
 import CalendarPage from '../CalendarPage/CalendarPage';
@@ -89,7 +86,7 @@ function App() {
             // - if logged in, redirects to "/user"
             // - else shows RegisterPage at "/registration"
             exact
-            path="/registration"
+            path="/register"
             authRedirect="/home"
           >
             <RegisterPage />

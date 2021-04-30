@@ -1,8 +1,12 @@
-import { Card, CardActions, CardContent, makeStyles, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-
 
 const useStyles = makeStyles({
   root: {
@@ -21,19 +25,10 @@ const useStyles = makeStyles({
   },
 });
 
-
 function BookmarksPageItem(props) {
   const dispatch = useDispatch();
   const thisBookmark = props.bookmark;
   const classes = useStyles();
-  useEffect(() => {
-    getBookmarks();
-  }, []);
-
-  const getBookmarks = () => {
-    dispatch({ type: "FETCH_BOOKMARKS" });
-  };
-
   const convertPrice = () => {
     if (thisBookmark.price === 0) {
       return "yes";

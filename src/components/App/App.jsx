@@ -1,32 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
-import Nav from '../Nav/Nav';
+import Nav from "../Nav/Nav";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import ActivityPage from '../ActivityPage/ActivityPage';
-import LandingPage from '../LandingPage/LandingPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import BookmarksPage from '../BookmarksPage/BookmarksPage';
-import CalendarPage from '../CalendarPage/CalendarPage';
-import CreateActivityPage from '../CreateActivityPage/CreateActivityPage';
-import AddActivityPage from '../AddActivityPage/AddActivityPage';
+import ActivityPage from "../ActivityPage/ActivityPage";
+import LandingPage from "../LandingPage/LandingPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import BookmarksPage from "../BookmarksPage/BookmarksPage";
+import CalendarPage from "../CalendarPage/CalendarPage";
+import CreateActivityPage from "../CreateActivityPage/CreateActivityPage";
+import AddActivityPage from "../AddActivityPage/AddActivityPage";
+import DetailsPage from "../DetailsPage/DetailsPage";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
@@ -38,28 +39,20 @@ function App() {
           <Redirect exact from="/" to="/login" />
 
           {/* Visiting localhost:3000/home will show the home page. */}
-          <ProtectedRoute
-            exact
-            path="/add-activity"
-          >
+          <ProtectedRoute exact path="/add-activity">
             <AddActivityPage />
           </ProtectedRoute>
-          <ProtectedRoute
-            exact
-            path="/home"
-          >
+          <ProtectedRoute exact path="/home">
             <ActivityPage />
           </ProtectedRoute>
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-
-          <ProtectedRoute
-
-            exact
-            path="/bookmarks"
-          >
+          <ProtectedRoute exact path="/details">
+            <DetailsPage />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/bookmarks">
             <BookmarksPage />
           </ProtectedRoute>
           <ProtectedRoute

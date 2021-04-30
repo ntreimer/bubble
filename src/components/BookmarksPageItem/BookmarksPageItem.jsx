@@ -29,6 +29,7 @@ function BookmarksPageItem(props) {
   const dispatch = useDispatch();
   const thisBookmark = props.bookmark;
   const classes = useStyles();
+
   const convertPrice = () => {
     if (thisBookmark.price === 0) {
       return "yes";
@@ -36,10 +37,12 @@ function BookmarksPageItem(props) {
       return "no";
     }
   };
-
+  const getDetails = () => {
+    dispatch({type: 'SET_DETAILS', payload: thisBookmark})
+  }
   return (
     <div>
-      <Card className={classes.root}>
+      <Card className={classes.root} onClick={getDetails}>
         <CardContent>
           <Typography variant="h5" component="h2">
             {thisBookmark.description}

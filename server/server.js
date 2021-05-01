@@ -13,6 +13,7 @@ const boredRouter = require('./routes/bored.router');
 const activityRouter = require('./routes/activity.router');
 const bookmarksRouter = require('./routes/bookmarks.router');
 const calendarRouter = require('./routes/calendar.router');
+const detailsRouter = require('./routes/details.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/bored', boredRouter);
 app.use('/api/activity', activityRouter);
 app.use('/api/bookmarks', bookmarksRouter);
 app.use('/api/calendar', calendarRouter);
+app.use('/api/details', detailsRouter);
 
 // Serve static files
 app.use(express.static('build'));

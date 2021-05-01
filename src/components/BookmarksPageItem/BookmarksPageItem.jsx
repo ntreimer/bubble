@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles({
 
 function BookmarksPageItem(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const thisBookmark = props.bookmark;
   const classes = useStyles();
 
@@ -38,7 +40,8 @@ function BookmarksPageItem(props) {
     }
   };
   const getDetails = () => {
-    dispatch({type: 'SET_DETAILS', payload: thisBookmark})
+    dispatch({type: 'SET_DETAILS', payload: thisBookmark});
+    history.push('/details')
   }
   return (
     <div>
@@ -51,18 +54,7 @@ function BookmarksPageItem(props) {
           <Typography variant="body2" component="p">
             Type: {thisBookmark.type}
           </Typography>
-          <Typography variant="body2" component="p">
-            Participants: {thisBookmark.participants}
-          </Typography>
-          <Typography variant="body2" component="p">
-            Free: {convertPrice()}
-          </Typography>
         </CardContent>
-        <CardActions>
-          <a target="_blank" href={thisBookmark.link}>
-            {thisBookmark.link}
-          </a>
-        </CardActions>
       </Card>
       <br />
     </div>

@@ -1,8 +1,12 @@
 import axios from "axios";
+import { func } from "prop-types";
 import { put, takeLatest, takeEvery } from "redux-saga/effects";
 
 
-// worker Saga: will be fired on "FETCH_USER" actions
+function* calendarDelete(action) {
+  yield axios.delete('/api/calendar', {data: action.payload})
+}
+
 function* fetchCalendar() {
   try {
     const calendar = yield axios.get("/api/calendar");
@@ -14,6 +18,7 @@ function* fetchCalendar() {
 
 function* calendarSaga() {
   yield takeEvery("FETCH_CALENDAR", fetchCalendar);
+  yield takeEvery('CALENDAR_DELETE', calendarDelete)
 }
 
 export default calendarSaga;

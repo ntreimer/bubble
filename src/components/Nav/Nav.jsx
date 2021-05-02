@@ -78,11 +78,11 @@ function Nav() {
       icon: <CalendarTodayIcon color="primary" />,
       path: "/calendar",
     },
-    {
-      title: "Create Activity",
-      icon: <CreateIcon color="primary" />,
-      path: "/create",
-    },
+    // {
+    //   title: "Create Activity",
+    //   icon: <CreateIcon color="primary" />,
+    //   path: "/create",
+    // },
   ];
   const list = (anchor) => (
     <div

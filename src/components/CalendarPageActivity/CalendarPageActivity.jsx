@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -36,15 +37,20 @@ function CalendarPageActivity(props) {
     dispatch({ type: "SET_DETAILS", payload: thisActivity });
     history.push("/details");
   };
-
+  const removeActivity = () => {
+    dispatch({ type: 'CALENDAR_DELETE', payload: thisActivity})
+  }
   return (
     <div>
-      <Card className={classes.root} onClick={getDetails}>
-        <CardContent>
+      <Card className={classes.root}>
+        <CardContent onClick={getDetails}>
           <Typography variant="h5" component="h2">
             {thisActivity.description}
           </Typography>
         </CardContent>
+        <CardActions>
+          <Button onClick={removeActivity}>Remove Activity</Button>
+        </CardActions>
       </Card>
       <br />
     </div>

@@ -88,6 +88,7 @@ function DetailsPage(props) {
         label="Notes"
         rows={4}
         variant="outlined"
+        defaultValue={details.notes}
         onChange={(event) => {
           setNotes(event.target.value);
         }}

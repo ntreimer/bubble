@@ -8,6 +8,18 @@ const userStrategy = require("../strategies/user.strategy");
 
 const router = express.Router();
 
+router.delete('/', rejectUnauthenticated, (req, res) => {
+  console.log('in calendar DELETE:', req.body);
+  const calendarId = req.body.id;
+  const queryString = `DELETE FROM "calendar"
+  WHERE "calendar".id = ($1);`;
+  pool.query(queryString, [calendarId]).then((response) => {
+    res.sendStatus(200);
+  }).catch((error) => {
+    console.log(error);
+  })
+})
+
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("in calendar GET req.user:", req.user);
   let queryString = `SELECT * FROM "activity"

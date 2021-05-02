@@ -1,4 +1,4 @@
-const activityReducer = (state = {}, action) => {
+const detailsReducer = (state = {}, action) => {
     switch (action.type) {
       case 'SET_DETAILS':
         return action.payload;
@@ -7,6 +7,7 @@ const activityReducer = (state = {}, action) => {
     }
   };
   
+
   // user will be on the redux state at:
   // state.user
-  export default activityReducer;
+  export default detailsReducer;

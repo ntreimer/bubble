@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   root: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
 
 function DetailsPage(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const details = useSelector((store) => store.details);
   const classes = useStyles();
 
@@ -50,7 +52,9 @@ function DetailsPage(props) {
   };
 
   const removeActivity = () => {
-    dispatch({ type: 'DELETE_ACTIVITY', payload: objectToSend });
+      console.log('in deleteacitivty');
+    dispatch({ type: 'DELETE_ACTIVITY', payload: details });
+    history.push('/bookmarks');
   }
 
   return (

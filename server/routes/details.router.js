@@ -26,4 +26,20 @@ router.put("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.delete("/", rejectUnauthenticated, (req, res) => {
+    console.log("in details DELETE req.body:", req.body);
+    const activityId = req.body.id;
+    const queryString = `DELETE FROM "activity"
+    WHERE "activity".id = ($1);`;
+    pool
+      .query(queryString, [activityId])
+      .then((response) => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  });
+
 module.exports = router;

@@ -11,7 +11,8 @@ const router = express.Router();
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("in activity GET req.user:", req.user);
   let queryString = `SELECT * FROM "activity"
-  WHERE "activity".user_id = ($1);`;
+  WHERE "activity".user_id = ($1)
+  ORDER BY id DESC;`;
   pool
     .query(queryString, [req.user.id])
     .then((response) => {

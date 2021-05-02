@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   root: {
@@ -26,17 +27,19 @@ const useStyles = makeStyles({
 });
 
 function CalendarPageActivity(props) {
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const thisActivity = props.activity;
   const classes = useStyles();
 
-
-
+  const getDetails = () => {
+    dispatch({ type: "SET_DETAILS", payload: thisActivity });
+    history.push("/details");
+  };
 
   return (
     <div>
-      <Card className={classes.root}>
+      <Card className={classes.root} onClick={getDetails}>
         <CardContent>
           <Typography variant="h5" component="h2">
             {thisActivity.description}

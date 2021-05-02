@@ -1,5 +1,5 @@
 import {
-    Button,
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -32,7 +32,7 @@ function DetailsPage(props) {
   const details = useSelector((store) => store.details);
   const classes = useStyles();
 
-  const [notes, setNotes] = useState('');
+  const [notes, setNotes] = useState("");
   const convertPrice = () => {
     if (details.price === 0) {
       return "yes";
@@ -42,14 +42,17 @@ function DetailsPage(props) {
   };
 
   const addNotes = () => {
-      const objectToSend = {
-          details: details,
-          notes: notes
-      }
-      console.log(objectToSend);
-      dispatch({type: 'UPDATE_DETAILS', payload: objectToSend})
+    const objectToSend = {
+      details: details,
+      notes: notes,
+    };
+    dispatch({ type: "UPDATE_DETAILS", payload: objectToSend });
+  };
 
+  const removeActivity = () => {
+    dispatch({ type: 'DELETE_ACTIVITY', payload: objectToSend });
   }
+
   return (
     <div>
       <Card className={classes.root}>
@@ -81,11 +84,16 @@ function DetailsPage(props) {
         label="Notes"
         rows={4}
         variant="outlined"
-        onChange={(event) => {setNotes(event.target.value)}}
+        onChange={(event) => {
+          setNotes(event.target.value);
+        }}
       />
-      <br/>
-      <br/>
-      <Button variant="contained" color="primary" onClick={addNotes}>Add notes</Button>
+      <br />
+      <br />
+      <Button variant="outlined" color="secondary" onClick={removeActivity}>Remove Activity</Button>
+      <Button variant="contained" color="primary" onClick={addNotes}>
+        Update notes
+      </Button>
     </div>
   );
 }

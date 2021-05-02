@@ -126,7 +126,10 @@ function Nav() {
                 Bubble
               </Typography>
               <IconButton
-                onClick={() => dispatch({ type: "LOGOUT" })}
+                onClick={() => {
+                  dispatch({ type: "LOGOUT" });
+                  history.push("/home");
+                }}
                 edge="end"
                 color="secondary"
               >

@@ -38,7 +38,8 @@ function CalendarPageActivity(props) {
     history.push("/details");
   };
   const removeActivity = () => {
-    dispatch({ type: 'CALENDAR_DELETE', payload: thisActivity})
+    dispatch({ type: 'CALENDAR_DELETE', payload: thisActivity});
+    dispatch({ type: "FETCH_CALENDAR" });
   }
   return (
     <div>
@@ -49,7 +50,7 @@ function CalendarPageActivity(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button onClick={removeActivity}>Remove Activity</Button>
+          <Button onClick={removeActivity}>Remove from Calendar</Button>
         </CardActions>
       </Card>
       <br />

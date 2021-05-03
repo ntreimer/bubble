@@ -4,7 +4,6 @@ import { put, takeLatest, takeEvery } from "redux-saga/effects";
 function* bookmarkActivity(action) {
   try {
     yield axios.post("/api/activity/bookmark", action.payload);
-    yield put({ type: "SET_BOOKMARKS", payload: bookmarks.data });
   } catch (error) {
     console.log("bookmark POST failed", error);
   }
@@ -13,7 +12,6 @@ function* bookmarkActivity(action) {
 function* calendarActivity(action) {
   try {
     yield axios.post("/api/activity/calendar", action.payload);
-    yield put({ type: "SET_CALENDAR", payload: calendar.data });
   } catch (error) {
     console.log("calendar POST request failed", error);
   }
